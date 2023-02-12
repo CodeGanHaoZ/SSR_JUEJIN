@@ -1,6 +1,3 @@
-@[TOC]
-<hr>
-
 # 📋前言
  <font color=#000> 这篇文章是关于在vscode终端中创建<font bgcolor=#fbd4d0 color=#be191c>**nuxtjs项目**</font>的一些步骤，同时还包括了使用<font bgcolor=#fbd4d0 color=#be191c>**Git、GitHub**</font>的一些操作，以此文章作为笔记，仅供参考。（前提：已经安装nodejs、git）
  
@@ -92,10 +89,4 @@ yarn create nuxt-app < project-name >
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/a7fb65c8447544e886af87b4c0c1a83f.png)
 <font color=#000>运行成功
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5f5a6fe5dce04a4a8332f741a858a4c4.png)
-<hr>
-<center> <b>🎯点赞收藏，防止迷路🔥 </b></center>
-<hr>
 
-<center>
-
-![在这里插入图片描述](https://img-blog.csdnimg.cn/6e930e8a842f4b928327ee973f7c8d6c.gif#pic_center)
