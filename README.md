@@ -90,3 +90,20 @@ yarn create nuxt-app < project-name >
 <font color=#000>运行成功
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5f5a6fe5dce04a4a8332f741a858a4c4.png)
 
+# 💻提交与同步数据到GitHub仓库
+<font color=#000>创建完 nuxtjs 项目以后，我们可以把这些新建的数据提交到 GitHub 仓库上面，因为已经提交了，所以新建个 html 文件来演示一次提交与同步的过程。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/4923647f65554be8bdf8d2ff54f6b6f9.png)
+<font color=#000>然后可以在 vscode 上面提交，也可以在 git bush 上面提交。
+<font color=#000>在 vscode 上面提交如下。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/01cfdb57eb584c279f4ac89a1d4b1161.png)
+<font color=#000>1️⃣在 git bush 上面提交如下。
+<font color=#000>2️⃣注意有时候出现超时、同步失败的情况，**下图二是两种出现错误的情况**，多 push 几次就行了。（我一般在 vscode 上面同步都会超时，所以我都是在 git bush 上面 push）
+![在这里插入图片描述](https://img-blog.csdnimg.cn/866dbfa68e02477eae832aef414b955c.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/42365955c6004db094b8e1fc613d4272.png)
+<font color=#000>最后在 GitHub 仓库上面查看，显示了刚刚提交的内容，说明提交与同步成功了。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/b75d3717065541d09bb3dd67fa3b65f4.png)
+<font color=#000>涉及到的命令如下：
+
+ 1. 首先我是创建了一个新的 branch ，通过 git branch -M xxx 这条命令来创建，xxx 是指 branch 的名称 。
+ 2. 然后是把数据提交到仓库，通过 git commit -m "xxx" 这条命令来操作，xxx 是指提交时的备注消息。
+ 3. 最后是把克隆到本地的仓库推送、同步到远程的 GitHub 仓库上面，通过 git push -u origin xxx 这条命令来操作，xxx 是指你的 branch ，这里的 branch 是新创建的那个。
