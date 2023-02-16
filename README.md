@@ -1,4 +1,4 @@
-# A demo for 《基于SSR开发仿掘金站点》 - CMS
+#🚀 A demo for 《基于SSR开发仿掘金站点》 - CMS
 
 《基于SSR开发仿掘金站点》数据层 CMS demo
 
@@ -18,39 +18,7 @@ npm run develop
 ```
 [接口文档](https://www.showdoc.com.cn/2184396549651010/9799667237123717) 密码:200295
 
-# 🚀 Getting started with Strapi
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html) (CLI) which lets you scaffold and manage your project in seconds.
-
-### `develop`
-
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-develop)
-
-```
-npm run develop
-# or
-yarn develop
-```
-
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
-
-```
-npm run start
-# or
-yarn start
-```
-
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
-
-```
-npm run build
-# or
-yarn build
-```
 
 ## ⚙️ Deployment
 
