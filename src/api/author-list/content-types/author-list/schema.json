@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "author_lists",
+  "info": {
+    "singularName": "author-list",
+    "pluralName": "author-lists",
+    "displayName": "authorList"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "authors": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::author.author"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "classification_tabs",
+  "info": {
+    "singularName": "classification-tab",
+    "pluralName": "classification-tabs",
+    "displayName": "classificationTab"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "classification": {
+      "type": "integer",
+      "required": true,
+      "unique": true,
+      "max": 20
+    },
+    "content": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

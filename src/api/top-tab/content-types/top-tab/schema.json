@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "top_tabs",
+  "info": {
+    "singularName": "top-tab",
+    "pluralName": "top-tabs",
+    "displayName": "topTab",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "classification": {
+      "type": "integer",
+      "required": true,
+      "unique": true,
+      "max": 20,
+      "min": 0
+    },
+    "content": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 2
+    },
+    "tagState": {
+      "type": "integer",
+      "required": true,
+      "unique": false,
+      "max": 1,
+      "min": 0,
+      "default": 0
+    },
+    "tag": {
+      "type": "string",
+      "maxLength": 5,
+      "required": false,
+      "unique": false,
+      "default": " "
+    }
+  }
+}
