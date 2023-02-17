@@ -50,7 +50,7 @@
 .main-header .container {
   margin: auto;
   max-width: 1440px;
-  border: 1px solid;
+  /* border: 1px solid; */
 }
 
 .container {
@@ -96,7 +96,12 @@
   margin: 0;
 }
 
-li {
+.nav-item {
+  color: #000000;
+  text-decoration: none;
+}
+li{
   list-style: none;
+
 }
 </style>
