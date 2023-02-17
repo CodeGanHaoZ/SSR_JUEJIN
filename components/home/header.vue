@@ -8,14 +8,14 @@
 
         <nav class="main-nav">
           <ul class="nav-list">
-            <li><nuxt-link>首页</nuxt-link></li>
-            <li><nuxt-link>沸点</nuxt-link></li>
-            <li><nuxt-link>课程</nuxt-link></li>
-            <li><nuxt-link>直播</nuxt-link></li>
-            <li><nuxt-link>活动</nuxt-link></li>
-            <li><nuxt-link>商城</nuxt-link></li>
-            <li><nuxt-link>APP</nuxt-link></li>
-            <li><nuxt-link>插件</nuxt-link></li>
+            <li><nuxt-link :to="{name:'index'}" class="nav-item">首页</nuxt-link></li>
+            <li><nuxt-link :to="{name:'index'}" class="nav-item">沸点</nuxt-link></li>
+            <li><nuxt-link :to="{name:'index'}" class="nav-item">课程</nuxt-link></li>
+            <li><nuxt-link :to="{name:'index'}" class="nav-item">直播</nuxt-link></li>
+            <li><nuxt-link :to="{name:'index'}" class="nav-item">活动</nuxt-link></li>
+            <li><nuxt-link :to="{name:'index'}" class="nav-item">商城</nuxt-link></li>
+            <li><nuxt-link :to="{name:'index'}" class="nav-item">APP</nuxt-link></li>
+            <li><nuxt-link :to="{name:'index'}" class="nav-item">插件</nuxt-link></li>
           </ul>
         </nav>
       </div>
@@ -82,8 +82,8 @@
 
 .logo-img {
   display: block;
-  width: 110px;
-  height: 28px;
+  width: 137px;
+  height: 40px;
 }
 
 .nav-list {
