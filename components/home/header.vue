@@ -83,7 +83,7 @@
 .logo-img {
   display: block;
   width: 137px;
-  height: 40px;
+  height: 28px;
 }
 
 .nav-list {
