@@ -1,6 +1,6 @@
 <template>
   <!-- <Header /> -->
-  <h1>1</h1>
+  <div class="view-container container"></div>
 </template>
 
 <script>

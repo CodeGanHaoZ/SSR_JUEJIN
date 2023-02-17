@@ -1,24 +1,25 @@
 <template>
-  <!-- 页面顶部 -->
   <div class="main-header-box">
     <header class="main-header">
-      <!-- 图标 -->
-      <div class="logo">
-        <img src="../../assets/images/logo.png" class="header-logo" alt="" />
+      <div class="container">
+        <nuxt-link :to="{ name: 'index' }" class="logo">
+          <img src="../../assets/images/logo.png" class="logo-img" alt="" />
+        </nuxt-link>
+
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li><nuxt-link>首页</nuxt-link></li>
+            <li><nuxt-link>沸点</nuxt-link></li>
+            <li><nuxt-link>课程</nuxt-link></li>
+            <li><nuxt-link>直播</nuxt-link></li>
+            <li><nuxt-link>活动</nuxt-link></li>
+            <li><nuxt-link>商城</nuxt-link></li>
+            <li><nuxt-link>APP</nuxt-link></li>
+            <li><nuxt-link>插件</nuxt-link></li>
+          </ul>
+        </nav>
       </div>
-      <!-- 图标旁边列表 -->
-      <div class="header-list">
-        <ul>
-          <li><a>首页</a></li>
-          <li class="disappearSecond"><a>沸点</a></li>
-          <li class="disappearSecond"><a>课程</a></li>
-          <li class="disappearSecond"><a>直播</a></li>
-          <li class="disappearSecond"><a>活动</a></li>
-          <li class="disappearSecond"><a>商城</a></li>
-          <li class="disappearFirst"><a>APP</a></li>
-          <li class="disappearFirst"><a>插件</a></li>
-        </ul>
-      </div>
+      <!-- <div class="header-list"></div> -->
     </header>
   </div>
 </template>
@@ -28,40 +29,74 @@
 
 <style scoped>
 /* header区域*/
-.home_header {
-  height: 68px;
-  min-width: 600px;
-  width: 100%;
-  background-color: rgb(255, 255, 255);
+.main-header-box {
+  position: relative;
+  height: 5rem;
 }
+
+.main-header.visible {
+  transform: translateZ(0);
+}
+
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.2s;
+  /* transform: translate3d(0,-100%,0); */
+}
+
+.main-header .container {
+  margin: auto;
+  max-width: 1440px;
+  border: 1px solid;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 .container {
   position: relative;
   margin: 0 auto;
   width: 100%;
   max-width: 960px;
 }
-/* 图标 */
-.header_logo {
-  float: left;
-  margin: 22px 0 0 60px;
-  cursor: pointer;
+
+/* .container {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
+} */
+.logo {
+  margin-right: 1rem;
+  margin-left: 24px;
+  display: inline-block;
+  height: 22px;
+  width: auto;
 }
 
-.header_logo {
-  width: 106px;
+.logo-img {
+  display: block;
+  width: 110px;
+  height: 28px;
 }
 
-/* 图标旁边列表 */
-.header_list li {
-  height: 43px;
-  margin: 24px 0 0 25px;
-  float: left;
-  font-size: 0.9rem;
-  cursor: pointer;
+.nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  /* flex-direction: row-reverse; */
+  height: 100%;
+  margin: 0;
 }
 
-.header_list li:hover {
-  border-bottom: 2px solid rgb(30, 143, 255);
-  color: #696d70;
+li {
+  list-style: none;
 }
 </style>
