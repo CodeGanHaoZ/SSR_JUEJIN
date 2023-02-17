@@ -1,36 +1,23 @@
-# 🚀 Getting started with Strapi
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html) (CLI) which lets you scaffold and manage your project in seconds.
 
-### `develop`
+# A demo for 《基于SSR开发仿掘金站点》 - CMS
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-develop)
+## 🚀登录
+
+管理员账号 账号：Admin 邮箱：[demo@qq.com](mailto:demo@qq.com) 密码：m123456M
+
+## ✨项目启动
+
+node 版本 >= 16
+
+将资源克隆到本地后，执行
 
 ```
+npm install
 npm run develop
-# or
-yarn develop
 ```
 
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
-
-```
-npm run start
-# or
-yarn start
-```
-
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
-
-```
-npm run build
-# or
-yarn build
-```
+[接口文档](https://www.showdoc.com.cn/2184396549651010/9799667237123717) 密码：200295
 
 ## ⚙️ Deployment
 
@@ -45,13 +32,3 @@ Strapi gives you many possible deployment options for your project. Find the one
 - [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
 
 Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
