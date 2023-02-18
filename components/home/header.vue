@@ -25,6 +25,26 @@
 </template>
 
 <script>
+import axios from 'axios'
+export default {
+  data(){
+    return{
+      data:'1'
+    }
+  },
+  async asyncData(){
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+    const url ='http://localhost:1337/api/top-tabs?fields[0]=classification&fields[1]=content&fields[2]=tagState&fields[3]=tag'
+
+    let {data} =await axios.get(url)
+    console.log(data);
+    // .then((res)=>{
+    //   console.log(res);
+    // }).catch((err)=>{
+    //   console.log(err);
+    // })
+  }
+}
 </script>
 
 <style scoped>
