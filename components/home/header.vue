@@ -45,11 +45,6 @@
               </el-dropdown-menu>
             </el-dropdown>
           </client-only>
-          <!-- <ul class="phone-nav-list">
-            <li v-for="item,index in this.tabInfo" :key="index" class="nav-item">
-
-            </li>
-          </ul> -->
         </nav>
       </div>
     </header>
@@ -78,7 +73,7 @@ export default {
     const that = this
     const res = await axios.get(url)
     that.tabInfo = res.data.data
-    console.log(res);
+    // console.log(res);
     } catch (err) {
       console.log(err)
     }
@@ -90,10 +85,10 @@ export default {
 </script>
 
 <style scoped>
-.main-header-box {
+/* .main-header-box {
   position: relative;
   height: 5rem;
-}
+} */
 
 /* .main-header.visible {
   transform: translateZ(0);
@@ -109,7 +104,6 @@ export default {
 } */
 
 .main-header {
-    background: var(--juejin-navigation);
     border-bottom: 1px solid #f1f1f1;
     color: #909090;
     height: 60px;
@@ -171,7 +165,6 @@ export default {
 }
 li{
   list-style: none;
-
 }
 
 .link{
@@ -179,17 +172,15 @@ li{
   text-decoration: none;
   display: inline-block;
   height: 60px;
-  /* margin: 0 14px; */
   border-bottom: 2px solid transparent;
 
 }
 
 .el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover{
     background: none !important;
-    /* transition: background 1.9s; */
 }
 .el-dropdown{
-  /* border: 1px solid; */
+  width: 50px;
   position: absolute;
   top: 20px;
   left: 149px;
@@ -200,11 +191,11 @@ li{
 }
 .el-dropdown-menu{
   width: 150px !important;
-  height: 330px !important;
+  height: 340px !important;
   top: 86px;
 }
 
-.el-popper /deep/ .popper__arrow {
+.el-popper >>> .popper__arrow {
     border-bottom-color: #1EBEF4 !important;
     left: 50% !important;
     visibility: hidden;
@@ -278,6 +269,7 @@ li{
     }
     .phone-nav-list {
       left: -62px !important;
+      top: 18px !important;
     }
 }
 </style>
