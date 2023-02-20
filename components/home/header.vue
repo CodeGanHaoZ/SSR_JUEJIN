@@ -30,6 +30,26 @@
               </nuxt-link>
             </li>
           </ul>
+          <client-only>
+            <el-dropdown trigger="click" >
+              <span class="el-dropdown-link">
+                首页<i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown"  class="phone-nav-list" :append-to-body="false">
+                <el-dropdown-item v-for="item,index in this.tabInfo" :key="index" class="phone-nav-item">
+                  <nuxt-link :to="{name:'index'}" class="phone-link">
+                    {{ item.attributes.content }}
+                    <span class="phone-tablead" v-if="item.attributes.tagState==1">{{ item.attributes.tag }}</span>
+                  </nuxt-link>
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </client-only>
+          <!-- <ul class="phone-nav-list">
+            <li v-for="item,index in this.tabInfo" :key="index" class="nav-item">
+
+            </li>
+          </ul> -->
         </nav>
       </div>
     </header>
@@ -47,7 +67,6 @@ export default {
   },
   created(){
     this.asyncData()
-    // console.log(this.url);
 
   },
   methods:{
@@ -55,7 +74,6 @@ export default {
     async asyncData(){
     axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
     const url ='http://localhost:1337/api/top-tabs?fields[0]=classification&fields[1]=content&fields[2]=tagState&fields[3]=tag'
-    // let {data} = axios.get(url)
     try {
     const that = this
     const res = await axios.get(url)
@@ -64,6 +82,7 @@ export default {
     } catch (err) {
       console.log(err)
     }
+
   },
   }
 
@@ -71,10 +90,8 @@ export default {
 </script>
 
 <style scoped>
-/* header区域*/
 .main-header-box {
   position: relative;
-
   height: 5rem;
 }
 
@@ -102,7 +119,6 @@ export default {
 .main-header .container {
   margin: auto;
   max-width: 1440px;
-  /* border: 1px solid; */
 }
 
 .container {
@@ -124,6 +140,7 @@ export default {
     width: 100%;
     max-width: 960px;
 } */
+
 .logo {
   margin-right: 10px;
   margin-left: 18px;
@@ -132,29 +149,25 @@ export default {
   width: auto;
 }
 
-/* .logo-img {
-  display: block;
-  width: 137px;
-  height: 28px;
-} */
 
 .main-nav{
   font-size: 14px;
-  /* font-size: 1.167rem; */
+  height: 60px;
 }
 
 .nav-list {
-  /* border: 1px solid; */
   height: 100%;
   display: flex;
+  align-items: center;
 }
 
 .nav-item {
-  display: inline-block;
-  /* display: flex; */
-  line-height: 2em;
-  padding: 12px;
+  position: relative;
+  display: flex;
   /* border: 1px solid; */
+  width: 56px;
+  line-height: 62px;
+  justify-content: center;
 }
 li{
   list-style: none;
@@ -162,24 +175,107 @@ li{
 }
 
 .link{
-  color: #000000;
+  color: #696d70;
   text-decoration: none;
+  display: inline-block;
+  height: 60px;
+  /* margin: 0 14px; */
+  border-bottom: 2px solid transparent;
+
+}
+
+.el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover{
+    background: none !important;
+    /* transition: background 1.9s; */
+}
+.el-dropdown{
+  /* border: 1px solid; */
+  position: absolute;
+  top: 20px;
+  left: 149px;
+}
+.el-dropdown-link{
+  color: #1e80ff;
+}
+.el-dropdown-menu{
+  width: 150px !important;
+  height: 330px !important;
+  top: 86px;
+}
+
+.el-popper /deep/ .popper__arrow {
+    border-bottom-color: #1EBEF4 !important;
+    left: 50% !important;
+    visibility: hidden;
+}
+.phone-nav-list {
+  /* min-width: 120px; */
+  /* position: absolute !important; */
+  /* top: 35px !important; */
+  left: 88px !important;
+}
+.phone-nav-item {
+  position: relative;
+  display: flex;
+  /* border: 1px solid; */
+  /* width: 86px; */
+  /* line-height: 62px; */
+
+  justify-content: center;
+}
+.link:hover{
+  background-color: none;
+  border-bottom: 2px solid #1e80ff;
+  color: #000;
+}
+
+.phone-link{
+  color: #696d70;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+
+}
+.phone-link:hover{
+  border-bottom: 2px solid #1e80ff;
+  color: #000;
+}
+.phone-tablead{
+  position: absolute;
+  bottom: 20px;
+  right: 4px;
+  z-index: 99;
+  white-space: nowrap;
+  padding: 2px 7px;
+  background-color: #ee502f;
+  border-radius: 50px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  transform: scale(.5);
+  line-height: 18px;
+  color: #fff;
 }
 
 .tablead{
   position: absolute;
-    top: 5px;
-    left: 7px;
-    z-index: 9;
-    white-space: nowrap;
-    padding: 2px 7px;
-    background-color: #ee502f;
-    border-radius: 50px;
-    text-align: center;
-    font-weight: 500;
-    font-size: 16px;
-    transform: scale(.5);
-    line-height: 18px;
-    color: #fff;
+  top: 5px;
+  left: 24px;
+  z-index: 99;
+  white-space: nowrap;
+  padding: 2px 7px;
+  background-color: #ee502f;
+  border-radius: 50px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  transform: scale(.5);
+  line-height: 18px;
+  color: #fff;
+}
+
+@media screen and (max-width: 1300px) {
+    .nav-list {
+        display: none !important;
+    }
 }
 </style>
