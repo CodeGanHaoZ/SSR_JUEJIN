@@ -193,6 +193,7 @@ li{
   position: absolute;
   top: 20px;
   left: 149px;
+  display: none;
 }
 .el-dropdown-link{
   color: #1e80ff;
@@ -209,20 +210,15 @@ li{
     visibility: hidden;
 }
 .phone-nav-list {
-  /* min-width: 120px; */
-  /* position: absolute !important; */
-  /* top: 35px !important; */
   left: 88px !important;
 }
+
 .phone-nav-item {
   position: relative;
   display: flex;
-  /* border: 1px solid; */
-  /* width: 86px; */
-  /* line-height: 62px; */
-
   justify-content: center;
 }
+
 .link:hover{
   background-color: none;
   border-bottom: 2px solid #1e80ff;
@@ -276,6 +272,12 @@ li{
 @media screen and (max-width: 1300px) {
     .nav-list {
         display: none !important;
+    }
+    .el-dropdown{
+      display: block !important;
+    }
+    .phone-nav-list {
+      left: -62px !important;
     }
 }
 </style>
