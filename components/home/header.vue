@@ -3,7 +3,7 @@
     <header class="main-header">
       <div class="container">
         <nuxt-link :to="{ name: 'index' }" class="logo">
-          <svg width="137" height="28" viewBox="0 0 137 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="107" height="22" viewBox="0 0 137 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.5865 17.3955H17.5902L28.5163 8.77432L25.5528 6.39453L17.5902 12.6808H17.5865L17.5828 12.6845L9.62018 6.40201L6.6604 8.78181L17.5828 17.3992L17.5865 17.3955Z" fill="#1E80FF"/>
             <path d="M17.5872 6.77268L21.823 3.40505L17.5872 0.00748237L17.5835 0L13.3552 3.39757L17.5835 6.76894L17.5872 6.77268Z" fill="#1E80FF"/>
             <path d="M17.5865 23.2854L17.5828 23.2891L2.95977 11.7531L0 14.1291L0.284376 14.3574L17.5865 28L28.5238 19.3752L35.1768 14.1254L32.2133 11.7456L17.5865 23.2854Z" fill="#1E80FF"/>
@@ -19,17 +19,19 @@
             <path d="M43.562 24.6246H45.4591L46.2786 11.4272H44.3815L43.562 24.6246Z" fill="#323232"/>
             <path d="M49.7849 11.4272L50.3499 23.2963H52.247L51.682 11.4272H49.7849Z" fill="#323232"/>
           </svg>
-
           <!-- <img src="../../assets/images/logo.png" class="logo-img" alt="" /> -->
         </nuxt-link>
-
         <nav class="main-nav">
-          <ul class="nav-list" v-for="item,index in this.tabInfo" :key="index">
-            <li><nuxt-link :to="{name:'index'}" class="nav-item">{{ item.attributes.content }}</nuxt-link></li>
+          <ul class="nav-list">
+            <li v-for="item,index in this.tabInfo" :key="index" class="nav-item">
+              <nuxt-link :to="{name:'index'}" class="link">
+                {{ item.attributes.content }}
+                <span class="tablead" v-if="item.attributes.tagState==1">{{ item.attributes.tag }}</span>
+              </nuxt-link>
+            </li>
           </ul>
         </nav>
       </div>
-      <!-- <div class="header-list"></div> -->
     </header>
   </div>
 </template>
@@ -40,7 +42,6 @@ export default {
   data(){
     return{
       tabInfo:{
-
       }
     }
   },
@@ -59,7 +60,7 @@ export default {
     const that = this
     const res = await axios.get(url)
     that.tabInfo = res.data.data
-    console.log(that.tabInfo);
+    console.log(res);
     } catch (err) {
       console.log(err)
     }
@@ -73,10 +74,11 @@ export default {
 /* header区域*/
 .main-header-box {
   position: relative;
+
   height: 5rem;
 }
 
-.main-header.visible {
+/* .main-header.visible {
   transform: translateZ(0);
 }
 
@@ -86,7 +88,15 @@ export default {
   left: 0;
   right: 0;
   transition: all 0.2s;
-  /* transform: translate3d(0,-100%,0); */
+  transform: translate3d(0,-100%,0);
+} */
+
+.main-header {
+    background: var(--juejin-navigation);
+    border-bottom: 1px solid #f1f1f1;
+    color: #909090;
+    height: 60px;
+    z-index: 250;
 }
 
 .main-header .container {
@@ -115,35 +125,61 @@ export default {
     max-width: 960px;
 } */
 .logo {
-  margin-right: 1rem;
-  margin-left: 24px;
+  margin-right: 10px;
+  margin-left: 18px;
   display: inline-block;
   height: 22px;
   width: auto;
 }
 
-.logo-img {
+/* .logo-img {
   display: block;
   width: 137px;
   height: 28px;
+} */
+
+.main-nav{
+  font-size: 14px;
+  /* font-size: 1.167rem; */
 }
 
 .nav-list {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  /* flex-direction: row-reverse; */
+  /* border: 1px solid; */
   height: 100%;
-  margin: 0;
+  display: flex;
 }
 
 .nav-item {
-  color: #000000;
-  text-decoration: none;
+  display: inline-block;
+  /* display: flex; */
+  line-height: 2em;
+  padding: 12px;
+  /* border: 1px solid; */
 }
 li{
   list-style: none;
 
+}
+
+.link{
+  color: #000000;
+  text-decoration: none;
+}
+
+.tablead{
+  position: absolute;
+    top: 5px;
+    left: 7px;
+    z-index: 9;
+    white-space: nowrap;
+    padding: 2px 7px;
+    background-color: #ee502f;
+    border-radius: 50px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    transform: scale(.5);
+    line-height: 18px;
+    color: #fff;
 }
 </style>
