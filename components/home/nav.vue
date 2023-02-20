@@ -6,6 +6,7 @@
           <span>
             {{ item.attributes.content }}
           </span>
+          <div class="category-popover"></div>
         </div>
       </nuxt-link>
     </div>
@@ -54,7 +55,7 @@ export default {
     position: fixed;
     /* top: 5rem; */
     width: 100%;
-    height: 3.833rem;
+    height: 46px;
     z-index: 100;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
     transition: all .2s;
@@ -90,9 +91,10 @@ export default {
   }
 }
 
-/* @media (max-width: 980px){
+@media (max-width: 980px){
   .view-nav .nav-list .nav-item:first-child, .view-nav .nav-list .nav-item:last-child {
-      padding: 0 1.5rem;
+      padding: 0 18px;
   }
-} */
+}
+
 </style>
