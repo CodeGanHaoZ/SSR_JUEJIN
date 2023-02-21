@@ -85,24 +85,6 @@ export default {
 </script>
 
 <style scoped>
-/* .main-header-box {
-  position: relative;
-  height: 5rem;
-} */
-
-/* .main-header.visible {
-  transform: translateZ(0);
-}
-
-.main-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  transition: all 0.2s;
-  transform: translate3d(0,-100%,0);
-} */
-
 .main-header {
     border-bottom: 1px solid #f1f1f1;
     color: #909090;

@@ -10,10 +10,6 @@
         </div>
       </nuxt-link>
     </div>
-
-
-
-
   </nav>
 </template>
 
