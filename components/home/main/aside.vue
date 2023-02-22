@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <div class="asideLi aside-first">
+    <div class="asideLi aside-first" style="transition: all .2s;">
       <div class="iconfont icon-shijian" id="good">
         <span class="title">{{ greeting }}</span>
         <div class="second-line">点亮你在社区的每一天</div>
@@ -32,7 +32,7 @@
 
     <div class="asideLi aside-fifth">
       <div class="aside-fifth-li aside-fifth-firstLi user-block-header">
-        <nuxt-link :to="{}" id="aside-fifth-author" >🎖️作者榜</nuxt-link>
+        <nuxt-link :to="{}" id="aside-fifth-author">🎖️作者榜</nuxt-link>
       </div>
       <template v-for="item, index in this.authorInfo">
         <div class="aside-fifth-li aside-fifth-secondLi">
@@ -130,18 +130,14 @@ export default {
   },
   watch: {
     offsetY(newValue, oldValue) {
-      const main_header = document.querySelector('.main-header')
-      const view_nav = document.querySelector('.view-nav ')
       const asideLiFixedChange = document.querySelector('.asideLi-fixed')
-      if (newValue >= 500 || this.scrollY >= 1500) {
+      if (newValue >= 1000) {
         asideLiFixedChange.classList.add('asideLi-fixed-change')
-        main_header.style.transform = 'translate3d(0,-100%,0)'
-        view_nav.style.transform = 'translate3d(0,-60px,0)'
+        asideLiFixedChange.style.transition="all .2s"
       }
       else {
-        main_header.style.transform = 'none'
-        view_nav.style.transform = 'none'
         asideLiFixedChange.classList.remove('asideLi-fixed-change')
+        asideLiFixedChange.style.transition="all .2s"
       }
     }
   }
@@ -162,6 +158,8 @@ a {
 
 .asideLi+.asideLi {
   margin-top: 15px;
+  transition: all .2s;
+
 }
 
 .aside-first {
@@ -304,10 +302,12 @@ a {
   padding: 1rem 1.3rem;
   /* border-bottom: 1px solid hsla(0, 0%, 59.2%, .1); */
 }
+
 .user-block-header {
-    /* padding: 1rem 1.3rem; */
-    border-bottom: 1px solid hsla(0,0%,59.2%,.1);
+  /* padding: 1rem 1.3rem; */
+  border-bottom: 1px solid hsla(0, 0%, 59.2%, .1);
 }
+
 .icon-paihangbang {
   padding-left: 20px;
   margin-top: 10px;
@@ -370,15 +370,20 @@ a {
 
 .asideLi-fixed {
   background-color: rgb(244, 245, 245);
+
 }
 
 .asideLi-fixed-change {
   position: fixed;
   top: 55px;
+  transition: all .2s;
 }
 
 aside {
-  float: right;
+  /* float: right; */
+  position: absolute;
+  right: 0px;
+  top: 0;
   width: 240px;
   margin-left: 20px;
 }
@@ -393,7 +398,7 @@ aside {
 }
 
 .item .username {
-  font-size: 1.16rem;
+  font-size: 14px;
   font-weight: 400;
   color: #333;
   white-space: nowrap;
@@ -408,7 +413,7 @@ aside {
 
 .item .link .position {
   color: #909090;
-  font-size: 1rem;
+  font-size: 12px;
   margin-bottom: 3px;
   white-space: nowrap;
   overflow: hidden;
@@ -428,19 +433,5 @@ aside {
   display: flex;
   align-items: center;
   cursor: pointer;
-}
-
-@media screen and (max-width:1000px) {
-  .asideLi {
-    display: none;
-  }
-
-  main {
-    width: 100%;
-  }
-
-  .main-box {
-    width: 100%;
-  }
 }
 </style>

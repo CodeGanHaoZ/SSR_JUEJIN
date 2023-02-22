@@ -1,56 +1,59 @@
 <template>
   <main>
-    <!-- 此盒子包含无限滚动列表和上方的导航栏（推荐|最新|热榜） -->
-    <div class="main-box">
+    <div class="main-box container">
       <MainHeader />
-      <!-- 无限滚动列表 -->
-      <div class="entry-list-wrap">
-        <div class="entry-list list">
-          <li class="item">
-            <div class="entry">
-              <!-- 日期 -->
-              <div class="meta-container">
-                <a href="" class="user-message">ghw</a>
-                <div class="date">
-                  三天前
+      <template v-for="item,index in this.mainInfo">
+        <div class="entry-list-wrap">
+          <div class="entry-list list">
+            <li class="item">
+              <div class="entry">
+                <!-- 日期 -->
+                <div class="meta-container">
+                  <a href="" class="user-message">{{ item.attributes.author.data.attributes.Name }}</a>
+                  <div class="date">
+                    三天前
+                  </div>
+                  <div class="tag_list">
+                    <nuxt-link :to="{}" class="tag">{{ item.attributes.classification_tab.data.attributes.content }}</nuxt-link>
+                  </div>
                 </div>
-                <div class="tag_list">
-                  <nuxt-link :to="{}" class="tag">1</nuxt-link>
+                <!-- 主体 -->
+                <div class="content-wrapper" style="border-bottom: 1px solid rgba(228, 230, 235, 0.5);">
+                  <div class="content-main">
+                    <!-- 文字1 -->
+                    <div class="title-row">
+                      <nuxt-link :to="{}" class="title">{{ item.attributes.title }}</nuxt-link>
+                    </div>
+                    <!-- 文字2 -->
+                    <div class="abstract">
+                      <a href="#">
+                        <div>
+                          {{ item.attributes.introduction }}
+                        </div>
+                      </a>
+                    </div>
+                    <ul class="action-list jh-timeline-action-area">
+                      <li class="item view">
+                        <i></i>
+                        <span>4396</span>
+                      </li>
+                      <li class="item like">
+                        <i></i>
+                        <span>2200</span>
+                      </li>
+                      <li class="item comment">
+                        <i></i>
+                        <span>50</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <img :src="`${baseUrl}`+item.attributes.cover.data.attributes.url" alt="error" class="lazy thumb">
                 </div>
               </div>
-              <!-- 主体 -->
-              <div class="content-wrapper" style="border-bottom: 1px solid rgba(228, 230, 235, 0.5);">
-                <div class="content-main">
-                  <!-- 文字1 -->
-                  <div class="title-row">
-                    1
-                  </div>
-                  <!-- 文字2 -->
-                  <div class="abstract">
-                    <a href=""></a>
-                    <div></div>
-                  </div>
-                  <ul class="action-list jh-timeline-action-area">
-                    <li class="item view">
-                      <i></i>
-                      <span>1</span>
-                    </li>
-                    <li class="item like">
-                      <i></i>
-                      <span>1</span>
-                    </li>
-                    <li class="item comment">
-                      <i></i>
-                      <span>1</span>
-                    </li>
-                  </ul>
-                </div>
-                <img src="" alt="" class="lazy thumb">
-              </div>
-            </div>
-          </li>
+            </li>
+          </div>
         </div>
-      </div>
+      </template>
     </div>
     <Aside />
   </main>
@@ -59,10 +62,40 @@
 <script>
 import MainHeader from './main-header';
 import Aside from './aside';
+import axios from 'axios';
 export default {
   components: {
     MainHeader,
     Aside
+  },
+  data() {
+    return {
+      mainInfo: {
+
+      },
+      offsetY: "",
+      baseUrl: "http://localhost:1337",
+    }
+
+  },
+  created(){
+    this.asyncData()
+  },
+  methods: {
+    // async...await
+    async asyncData() {
+      axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+      const url = 'http://localhost:1337/api/article-infos?fields[0]=aid&fields[1]=title&fields[2]=introduction&fields[3]=createdAt&populate[author][fields][0]=Name&populate[classification_tab][fields][0]=classification&populate[classification_tab][fields][1]=content&populate[cover][fields][0]=url&populate[type][fields][0]=type&populate[type][fields][1]=typeName&pagination[page]=1&pagination[pageSize]=13'
+      try {
+        const that = this
+        const res = await axios.get(url)
+        that.mainInfo = res.data.data
+        console.log(that.mainInfo)
+      } catch (err) {
+        console.log(err)
+      }
+
+    }
   }
 }
 </script>
@@ -90,6 +123,22 @@ export default {
 
 .meta-container {
   color: #86909c;
+}
+.meta-container .date:before {
+    left: 0;
+}
+.meta-container .date:after {
+    right: 0;
+}
+.meta-container .date:after, .meta-container .date:before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    width: 1px;
+    height: 14px;
+    background: #e5e6eb;
+    content: " ";
 }
 
 .meta-container,
@@ -274,12 +323,32 @@ a {
 }
 
 main {
-  width: 1000px;
-  height: 3000px;
-  margin: 120px auto;
+  position: relative;
+  /* width: 1000px; */
+  width: 100%;
+  height: auto;
+  /* margin: 120px auto; */
+  margin: 0 auto;
+  margin-top: 120px;
+  max-width: 960px;
 }
 
 .main-box {
-  float: left;
-  width: 740px;
-}</style>
+  /* float: left; */
+  width: 700px;
+}
+@media screen and (max-width:1000px) {
+  aside {
+    display: none;
+    transition: all .2s;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  .main-box {
+    width: 100%;
+  }
+}
+</style>
