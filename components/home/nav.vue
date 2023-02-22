@@ -82,6 +82,9 @@ export default {
     text-decoration: none;
 }
 
+.category-popover-box:hover{
+    color: #1e80ff;
+}
 @media (max-width: 980px){
   .view-nav .nav-list {
       width: auto;

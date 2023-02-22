@@ -1,6 +1,5 @@
 <template>
   <aside>
-    <!-- <div> -->
     <div class="asideLi aside-first">
       <div class="iconfont icon-shijian" id="good">
         <span class="title">{{ greeting }}</span>
@@ -32,23 +31,34 @@
     </div>
 
     <div class="asideLi aside-fifth">
-      <div class="aside-fifth-li aside-fifth-firstLi">
-        <nuxt-link :to="{}" class="iconfont icon-paihangbang"></nuxt-link>
-        <nuxt-link :to="{}" id="aside-fifth-author">🎖️作者榜</nuxt-link>
+      <div class="aside-fifth-li aside-fifth-firstLi user-block-header">
+        <nuxt-link :to="{}" id="aside-fifth-author" >🎖️作者榜</nuxt-link>
       </div>
-      <div class="aside-fifth-li aside-fifth-secondLi">
-        <ul>
-          <li>欧西里斯之天空龙</li>
-          <li>欧贝利斯克之巨神兵</li>
-          <li>拉之翼神龙</li>
-        </ul>
-      </div>
+      <template v-for="item, index in this.authorInfo">
+        <div class="aside-fifth-li aside-fifth-secondLi">
+          <div class="user-list">
+            <div class="item">
+              <nuxt-link :to="{}" id="aside-fifth-author" class="link">
+                <img :src="`${baseUrl}` + item.attributes.authors.data[0].attributes.HeadCover.data.attributes.url"
+                  alt="error" class="avatar">
+                <div class="user-info">
+                  <div class="username">
+                    {{ item.attributes.authors.data[0].attributes.Name }}
+                  </div>
+                  <div class="position">
+                    {{ item.attributes.authors.data[0].attributes.Signature }}
+                  </div>
+                </div>
+              </nuxt-link>
+            </div>
+          </div>
+        </div>
+      </template>
       <div class="aside-fifth-li aside-fifth-thirdLi">
-        <nuxt-link :to="{}">完整榜单</nuxt-link>
-        <nuxt-link :to="{}" class="iconfont icon-arrow-right"></nuxt-link>
+        <a href="https://juejin.cn/recommendation/authors/recommended">完整榜单</a>
+        <!-- <nuxt-link :to="{}" class="iconfont icon-arrow-right"></nuxt-link> -->
       </div>
     </div>
-    <!-- </div> -->
   </aside>
 </template>
 
@@ -58,12 +68,10 @@ export default {
   data() {
     return {
       asideInfo: {
-
       },
       offsetY: "",
       baseUrl: "http://localhost:1337",
       authorInfo: {
-
       },
       greeting: ""
     }
@@ -81,7 +89,7 @@ export default {
         const that = this
         const res = await axios.get(url1)
         that.asideInfo = res.data.data
-        console.log(that.asideInfo)
+        // console.log(that.asideInfo)
       } catch (err) {
         console.log(err)
       }
@@ -89,8 +97,8 @@ export default {
       try {
         const that = this
         const res = await axios.get(url2)
-        that.authorInfo = res.data
-        console.log(that.authorInfo);
+        that.authorInfo = res.data.data
+        // console.log(that.authorInfo)
       } catch (err) {
         console.log(err)
       }
@@ -98,44 +106,42 @@ export default {
     },
     greetingChange() {
       let hours = new Date().getHours();
-      if (hours>=6 && hours <= 10) {
+      if (hours >= 6 && hours <= 10) {
         this.greeting = '早上好'
-      } else if (hours>10 && hours <= 11) {
+      } else if (hours > 10 && hours <= 11) {
         this.greeting = '上午好'
-      } else if (hours>11 && hours <= 13) {
+      } else if (hours > 11 && hours <= 13) {
         this.greeting = '中午好'
-      } else if (hours>13 && hours <= 18) {
+      } else if (hours > 13 && hours <= 18) {
         this.greeting = '下午好'
-      } else if (hours>18 || hours <= 6) {
+      } else if (hours > 18 || hours <= 6) {
         this.greeting = '晚上好'
       }
       return this.greeting;
     }
-
   },
   mounted() {
     window.addEventListener("scroll", () => {
       this.offsetY =
         document.documentElement.scrollTop ||
         document.body.scrollTop ||
-        window.pageYOffset;
+        window.pageYOffset
     })
-
   },
   watch: {
     offsetY(newValue, oldValue) {
-      const main_header = document.querySelector('.main-header');
-      const view_nav = document.querySelector('.view-nav ');
-      const asideLiFixedChange = document.querySelector('.asideLi-fixed');
-      if (newValue >= 500||this.scrollY >= 1500) {
-        asideLiFixedChange.classList.add('asideLi-fixed-change');
-        main_header.style.transform = 'translate3d(0,-100%,0)';
-        view_nav.style.transform = 'translate3d(0,-60px,0)';
+      const main_header = document.querySelector('.main-header')
+      const view_nav = document.querySelector('.view-nav ')
+      const asideLiFixedChange = document.querySelector('.asideLi-fixed')
+      if (newValue >= 500 || this.scrollY >= 1500) {
+        asideLiFixedChange.classList.add('asideLi-fixed-change')
+        main_header.style.transform = 'translate3d(0,-100%,0)'
+        view_nav.style.transform = 'translate3d(0,-60px,0)'
       }
-      else{
-        main_header.style.transform = 'none';
-        view_nav.style.transform = 'none';
-        asideLiFixedChange.classList.remove('asideLi-fixed-change');
+      else {
+        main_header.style.transform = 'none'
+        view_nav.style.transform = 'none'
+        asideLiFixedChange.classList.remove('asideLi-fixed-change')
       }
     }
   }
@@ -150,7 +156,8 @@ a {
 .asideLi {
   width: 240px;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 1px 0 #cfd1d4;
+  /* box-shadow: 0 0 1px 0 #cfd1d4; */
+  /* box-shadow: 0 1px 2px 0 rgba(0,0,0,.05); */
 }
 
 .asideLi+.asideLi {
@@ -288,15 +295,19 @@ a {
 }
 
 .aside-fifth .aside-fifth-li {
-  margin-top: 1px;
   background-color: rgb(255, 255, 255);
 }
 
 .aside-fifth-firstLi #aside-fifth-author {
   font-size: 14px;
   color: #333;
+  padding: 1rem 1.3rem;
+  /* border-bottom: 1px solid hsla(0, 0%, 59.2%, .1); */
 }
-
+.user-block-header {
+    /* padding: 1rem 1.3rem; */
+    border-bottom: 1px solid hsla(0,0%,59.2%,.1);
+}
 .icon-paihangbang {
   padding-left: 20px;
   margin-top: 10px;
@@ -316,7 +327,7 @@ a {
   cursor: pointer;
 }
 
-.aside-fifth-secondLi ul li:hover {
+.aside-fifth-secondLi:hover {
   background-color: rgb(247, 247, 247);
 }
 
@@ -370,6 +381,53 @@ aside {
   float: right;
   width: 240px;
   margin-left: 20px;
+}
+
+.item .position {
+  color: #909090;
+  font-size: 1rem;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item .username {
+  font-size: 1.16rem;
+  font-weight: 400;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+
+.item .link .user-info {
+  overflow: hidden;
+}
+
+.item .link .position {
+  color: #909090;
+  font-size: 1rem;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.avatar {
+  flex: 0 0 auto;
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 50%;
+  margin-right: .5rem;
+}
+
+.item .link {
+  padding: 1rem 1.3rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 @media screen and (max-width:1000px) {
