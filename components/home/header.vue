@@ -57,7 +57,8 @@ export default {
   data(){
     return{
       tabInfo:{
-      }
+      },
+      offsetY:""
     }
   },
   created(){
@@ -70,53 +71,96 @@ export default {
     axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
     const url ='http://localhost:1337/api/top-tabs?fields[0]=classification&fields[1]=content&fields[2]=tagState&fields[3]=tag'
     try {
-    const that = this
-    const res = await axios.get(url)
-    that.tabInfo = res.data.data
-    // console.log(res);
+      const that = this
+      const res = await axios.get(url)
+      that.tabInfo = res.data.data
+      // console.log(res);
     } catch (err) {
       console.log(err)
     }
-
-  },
   }
 
+  },
+  mounted(){
+      window.addEventListener("scroll", () => {
+        this.offsetY =
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        window.pageYOffset;
+        if (this.scrollY >= 500) {
+          console.log(this.scrollY)
+
+      }
+    })
+  },
+  watch: {
+
+    offsetY(newValue, oldValue) {
+      // 等新值大于100的时候再做变化（优化一下）
+      //   if (newValue > 100) {
+      const main_header = document.querySelector('.main-header');
+      const view_nav  = document.querySelector('.view-nav ');
+      if (newValue >= 500) {
+        // if (newValue > oldValue) {
+        //   this.navShow = false;
+        //   console.log("向下滚动"); //显示
+        // } else {
+        //   this.navShow = true;
+        //   console.log("向上滚动"); //隐藏
+        // }
+        main_header.style.transform = 'translate3d(0,-100%,0)';
+        view_nav.style.transform = 'translate3d(0,-60px,0)';
+        // console.log('123')
+      }
+      else{
+        main_header.style.transform = 'none';
+        view_nav.style.transform = 'none';
+      }
+    }
+  }
 }
 </script>
 
 <style scoped>
+.main-header.visible {
+    transform: translateZ(0);
+}
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all .2s;
+    /* transform: translate3d(0,-100%,0); */
+}
 .main-header {
     border-bottom: 1px solid #f1f1f1;
     color: #909090;
     height: 60px;
     z-index: 250;
+    background-color: #ffffff;
 }
-
 .main-header .container {
   margin: auto;
   max-width: 1440px;
 }
-
 .container {
   display: flex;
   align-items: center;
   height: 100%;
 }
-
 .container {
   position: relative;
   margin: 0 auto;
   width: 100%;
   max-width: 960px;
 }
-
 /* .container {
     position: relative;
     margin: 0 auto;
     width: 100%;
     max-width: 960px;
 } */
-
 .logo {
   margin-right: 10px;
   margin-left: 18px;
@@ -124,19 +168,15 @@ export default {
   height: 22px;
   width: auto;
 }
-
-
 .main-nav{
   font-size: 14px;
   height: 60px;
 }
-
 .nav-list {
   height: 100%;
   display: flex;
   align-items: center;
 }
-
 .nav-item {
   position: relative;
   display: flex;
@@ -148,7 +188,6 @@ export default {
 li{
   list-style: none;
 }
-
 .link{
   color: #696d70;
   text-decoration: none;
@@ -157,7 +196,6 @@ li{
   border-bottom: 2px solid transparent;
 
 }
-
 .el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover{
     background: none !important;
 }
@@ -176,7 +214,6 @@ li{
   height: 340px !important;
   top: 86px;
 }
-
 .el-popper >>> .popper__arrow {
     border-bottom-color: #1EBEF4 !important;
     left: 50% !important;
@@ -185,7 +222,6 @@ li{
 .phone-nav-list {
   left: 88px !important;
 }
-
 .phone-nav-item {
   position: relative;
   display: flex;
@@ -197,12 +233,10 @@ li{
   border-bottom: 2px solid #1e80ff;
   color: #000;
 }
-
 .phone-link{
   color: #696d70;
   text-decoration: none;
   border-bottom: 2px solid transparent;
-
 }
 .phone-link:hover{
   border-bottom: 2px solid #1e80ff;
@@ -224,7 +258,6 @@ li{
   line-height: 18px;
   color: #fff;
 }
-
 .tablead{
   position: absolute;
   top: 5px;
@@ -241,7 +274,6 @@ li{
   line-height: 18px;
   color: #fff;
 }
-
 @media screen and (max-width: 1300px) {
     .nav-list {
         display: none !important;

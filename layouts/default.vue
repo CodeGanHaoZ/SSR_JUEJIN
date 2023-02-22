@@ -19,3 +19,10 @@ export default {
   }
 }
 </script>
+
+<style>
+body{
+    background-color: rgb(244,245,245);
+    /* color:#696d70; */
+}
+</style>

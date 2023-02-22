@@ -49,7 +49,7 @@ export default {
 <style scoped>
 .view-nav {
     position: fixed;
-    /* top: 5rem; */
+    top: 60px;
     width: 100%;
     height: 46px;
     z-index: 100;
@@ -57,6 +57,8 @@ export default {
     transition: all .2s;
     transform: translateZ(0);
     /* border: 1px solid; */
+    background-color:#ffffff;
+    /* transform: translate3d(0,-60px,0); */
 }
 
 .view-nav .nav-list {
