@@ -3,7 +3,7 @@
     <header class="main-header">
       <div class="container">
         <nuxt-link :to="{ name: 'index' }" class="logo">
-          <svg width="107" height="22" viewBox="0 0 137 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- <svg width="107" height="22" viewBox="0 0 137 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.5865 17.3955H17.5902L28.5163 8.77432L25.5528 6.39453L17.5902 12.6808H17.5865L17.5828 12.6845L9.62018 6.40201L6.6604 8.78181L17.5828 17.3992L17.5865 17.3955Z" fill="#1E80FF"/>
             <path d="M17.5872 6.77268L21.823 3.40505L17.5872 0.00748237L17.5835 0L13.3552 3.39757L17.5835 6.76894L17.5872 6.77268Z" fill="#1E80FF"/>
             <path d="M17.5865 23.2854L17.5828 23.2891L2.95977 11.7531L0 14.1291L0.284376 14.3574L17.5865 28L28.5238 19.3752L35.1768 14.1254L32.2133 11.7456L17.5865 23.2854Z" fill="#1E80FF"/>
@@ -18,8 +18,8 @@
             <path d="M57.6539 9.01025H55.6595L55.1768 10.3648H52.9991V12.2357H54.5145L52.55 17.7662H53.8821V24.1534H55.7007V16.8457H58.6642V25.1787H60.5837V16.8457H63.4612V21.059C63.4534 22.1374 63.181 23.1974 62.6679 24.146H64.7147C65.1423 23.173 65.3627 22.1217 65.362 21.059V15.6932V15.1282H60.5837V13.2572H58.6642V15.1282H55.4836L56.5313 12.2245H65.594V10.3536H57.1749L57.6539 9.01025Z" fill="#323232"/>
             <path d="M43.562 24.6246H45.4591L46.2786 11.4272H44.3815L43.562 24.6246Z" fill="#323232"/>
             <path d="M49.7849 11.4272L50.3499 23.2963H52.247L51.682 11.4272H49.7849Z" fill="#323232"/>
-          </svg>
-          <!-- <img src="../../assets/images/logo.png" class="logo-img" alt="" /> -->
+          </svg> -->
+          <img src="../../assets/images/logo.png" class="logo-img" alt="" />
         </nuxt-link>
         <nav class="main-nav">
           <ul class="nav-list">
@@ -165,8 +165,13 @@ export default {
   margin-right: 10px;
   margin-left: 18px;
   display: inline-block;
-  height: 22px;
+  /* height: 22px; */
   width: auto;
+  /* border: 1px solid; */
+}
+.logo-img{
+  width:107px;
+  /* height:30px; */
 }
 .main-nav{
   font-size: 14px;
@@ -221,6 +226,7 @@ li{
 }
 .phone-nav-list {
   left: 88px !important;
+  top: 38px !important;
 }
 .phone-nav-item {
   position: relative;
@@ -281,9 +287,9 @@ li{
     .el-dropdown{
       display: block !important;
     }
-    .phone-nav-list {
+    /* .phone-nav-list {
       left: -62px !important;
       top: 18px !important;
-    }
+    } */
 }
 </style>
