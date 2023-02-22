@@ -1,109 +1,178 @@
-# 📋前言
- <font color=#000> 这篇文章是关于在vscode终端中创建<font bgcolor=#fbd4d0 color=#be191c>**nuxtjs项目**</font>的一些步骤，同时还包括了使用<font bgcolor=#fbd4d0 color=#be191c>**Git、GitHub**</font>的一些操作，以此文章作为笔记，仅供参考。（前提：已经安装nodejs、git）
- 
->- <font color=#000>**关于nuxtjs、ssr、服务端渲染、nuxtjs项目结构等等相关知识点这篇文章就不多多介绍了，在后续的文章或笔记中也还会介绍这些内容（做笔记），接下来就直入主题吧！**
+# 一、项目介绍
+
+做个简单的自我介绍吧。
+
+### 核心信息概括
+
+基于Nuxt框架，使用Strapi作为CMS的仿掘金站点。
+
+### 项目服务地址（本地）
+
+> 仿掘金站点地址：http://localhost:3000/
 >
->- <font color=#000>**相关链接：**[nuxtjs官网](https://www.nuxtjs.cn/)
+> CMS操作地址：http://localhost:1337/admin
 
----
-# 💻关于GitHub打开慢或无法打开的问题
- <font color=#000>说实话这个问题对于我来说，很玄学，平时用GitHub比较少，用gitee比较多，但是当我需要用到GitHub或者要长时间使用时，它就经常出现无法访问、链接超时的问题。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2e0bf92a3e9543ca9cca0824d8af37cb.png)
- <font color=#000>于是通过查找问题和资料查询，大多数方法都说是hosts文件添加上GitHub的ip地址就行了，接下来我们实操一下。
+### Github  地址
 
- 1. 首先找到GitHub的ip地址，通过 [https://tool.lu/ip/](https://tool.lu/ip/) 这个在线工具获取。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/4bbc750069a6482998c63b53e43cbd8d.png)
- 1. 然后复制这个地址，添加到hosts文件里面。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2c5f09dff87e4d069761b3b1897c6462.png)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/fe96dfc332004ac9ac99d1c9265353e7.png)
- 1. 如果没有意外的话，GitHub就可以正常打开。
+https://github.com/CodeGanHaoZ/SSR_JUEJIN
 
----
-# 💻克隆GitHub的项目到本地
- <font color=#000>首先在GitHub上面创建一个项目，用于等等的克隆，这里不再过多的赘述详细步骤了，直接看图一步一步来。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/610dbb2e0d124f518bb0fef9fc4993e7.png)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/11719b126beb45b88458925f88403e11.png)
-<font color=#000>然后在本地创建一个新的文件夹，然后鼠标右键这个文件选择git bush here。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/93379bfac55c4f82b031721e106bd25c.png)
-<font color=#000>然后 git init 初始化项目，git clone...(你的仓库地址)来克隆项目。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/fbb07bf118174805a0fa97bb7341f3cf.png)
-<font color=#000>git clone下面这个HTTPS的仓库地址。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/6a27d9aa2de94982b8ba8ab5880637c9.png)
- <font color=#000>补充：这个是经典的创建仓库指令。
-```
-git init 	//把这个目录变成Git可以管理的仓库
-git add README.md 	//文件添加到仓库
-git add . 	//不但可以跟单一文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了 
-git commit -m "first commit" 	//把文件提交到仓库
-git remote add origin git@github.com:wangjiax9/practice.git 	//关联远程仓库
-git push -u origin master 	//把本地库的所有内容推送到远程库上
-```
----
-# 💻创建nuxtjs项目
- <font color=#000>克隆完仓库，我们就可以开始创建nuxtjs项目了，这里我选择的是在vscode终端来继续创建项目，这样可以直接指定好在哪个文件夹下了。（前提：已经安装好vue/cli）
-## 🧩无法加载文件的报错问题
-<font color=#000>**报错如下：**
-vue : 无法加载文件 C:\Users\ghw\AppData\Roaming\npm\vue.ps1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2a69651cc6f047ddb492152f267a3dce.png)
-<font color=#000>**解决方法：**
- 1. 以管理员身份运行PowerShell
- 2. 执行：get-ExecutionPolicy，回复Restricted，表示状态是禁止的
- 3. 执行：set-ExecutionPolicy RemoteSigned
- 4. 选择y
-![在这里插入图片描述](https://img-blog.csdnimg.cn/314ea8e6fe4b4a2bb80b4da08da9d7d0.png)
-## 🧩使用vue init nuxt/starter demo出现的问题
-<font color=#000>上面说到，解决完无法加载文件的问题以后，我们就可以使用 vue init nuxt/starter xxx来创建nuxtjs项目了。但是紧接着出现了如下的问题。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/291722138f2c49e2a6ea5fe6d251fc85.png)
-<font color=#000>输入 **vue init nuxt/starter demo** 后，没有开始创建项目，而是叫我跑一下 **npm i -g @vue/cli-init** 这段命令安装脚手架，按照这个步骤跑一下，安装完成后，出现几个==WARN==，先不给予理会，然后继续跑 **vue init nuxt/starter demo** 来创建项目。但是又没有开始创建项目，出现 <font color=red>**vue-cli · Failed to download repo nuxt/starter: connect ETIMEDOUT 20.205.243.166:443**</font> 这个错误。其中在网上看到有一种说法是，这个错误是因为 vue/cli 的版本所导致的创建失败。
-<font color=#000>**解决方法：** [参考文章](https://blog.csdn.net/qq_42951499/article/details/118485218)
+> 仿掘金站点：branch-ghw 、CMS：branch-thy
 
-## 🧩另一种命令创建nuxtjs项目
-1️⃣<font color=#000>使用 npx 
-npm install -g npx
-npx create-nuxt-app < project-name >
-2️⃣<font color=#000>或者用 yarn 
-npm install -g yarn
-yarn create nuxt-app < project-name >
+# 二、项目分工
 
----
-<font color=#000>这里我选择了使用yarn来创建，因为要先安装yarn，所以安装时间用了864.39s。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/323c90fd1e3640b8853de5393e8fac7e.png)
-<font color=#000>然后我们来分析下创建时的一些选项，从上到下，依次是：
+众人拾柴火焰高
 
- 1. 输入项目名称（这个名称不是项目文件的名称）
- 2. 选择编程语言
- 3. 选择包管理器
- 4. 选择UI框架
- 5. 选择 Nuxt.js 的模块
- 6. 选择代码检查工具
- 7. 选择单元测试框架
- 8. 选择渲染模式
- 9. 选择部署方式
- 10. 选择开发工具
- 11. 输入你的GitHub用户名
- 12. 选择版本管理工具
+| **团队成员**        | **主要贡献**                                                 |
+| ------------------- | ------------------------------------------------------------ |
+| @甘皓玮             | 仓库初始化、开发基于NuxtJs的前端页面（首页和详情页）         |
+| @田贺元             | 开发CMS数据库，使用Strapi配置数据，编写接口文档、E2E 端到端测试。 |
+| @陆冰玲-13281769436 | 汇报文档编写。                                               |
+| 李滨                | **无法取得联系**                                             |
 
-<font color=#000>然后启动项目。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/13dd9ca66d0b49e8b60cb2125b65625f.png)
-<font color=#000>然后点击运行 <font color=#4178b5>**http://localhost:3000**</font> 这个链接 。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/a7fb65c8447544e886af87b4c0c1a83f.png)
-<font color=#000>运行成功
-![在这里插入图片描述](https://img-blog.csdnimg.cn/5f5a6fe5dce04a4a8332f741a858a4c4.png)
+# 三、项目实现
 
-# 💻提交与同步数据到GitHub仓库
-<font color=#000>创建完 nuxtjs 项目以后，我们可以把这些新建的数据提交到 GitHub 仓库上面，因为已经提交了，所以新建个 html 文件来演示一次提交与同步的过程。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/4923647f65554be8bdf8d2ff54f6b6f9.png)
-<font color=#000>然后可以在 vscode 上面提交，也可以在 git bush 上面提交。
-<font color=#000>在 vscode 上面提交如下。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/01cfdb57eb584c279f4ac89a1d4b1161.png)
-<font color=#000>1️⃣在 git bush 上面提交如下。
-<font color=#000>2️⃣注意有时候出现超时、同步失败的情况，**下图二是两种出现错误的情况**，多 push 几次就行了。（我一般在 vscode 上面同步都会超时，所以我都是在 git bush 上面 push）
-![在这里插入图片描述](https://img-blog.csdnimg.cn/866dbfa68e02477eae832aef414b955c.png)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/42365955c6004db094b8e1fc613d4272.png)
-<font color=#000>最后在 GitHub 仓库上面查看，显示了刚刚提交的内容，说明提交与同步成功了。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/b75d3717065541d09bb3dd67fa3b65f4.png)
-<font color=#000>涉及到的命令如下：
+合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。
 
- 1. 首先我是创建了一个新的 branch ，通过 git branch -M xxx 这条命令来创建，xxx 是指 branch 的名称 。
- 2. 然后是把数据提交到仓库，通过 git commit -m "xxx" 这条命令来操作，xxx 是指提交时的备注消息。
- 3. 最后是把克隆到本地的仓库推送、同步到远程的 GitHub 仓库上面，通过 git push -u origin xxx 这条命令来操作，xxx 是指你的 branch ，这里的 branch 是新创建的那个。
+### 3.1 技术选型与相关开发文档
+
+#### 3.1.1 需求说明
+
+- 需求背景：随着广大技术人员有技术交流需求日益增多，需要一个平台作为他们交流分享的载体。
+- 相关人员：
+
+产品：甘皓玮、田贺元、陆冰玲
+
+前端：甘皓玮
+
+后端：田贺元
+
+测试：田贺元
+
+CMS测试时间：2023.02.19
+
+联调时间：2023.02.21
+
+展示时间：2023.02.22
+
+#### 3.1.2技术选型
+
+-  前端技术选型
+
+仿掘金站点是典型的C端项目，为了实现更好的SEO（搜索引擎优化）和首屏渲染体验，使用SSR开发模式。
+
+本项目主要采用`Vue3 + Nuxt3 + TypeScript +Vite`。`Nuxt3` 是基于 `Vite`、`Vue3` 和 `Nitro` 的 `Nuxt` 框架的重构，具有一流的 `TypeScript` 支持，其基于强大的模块化架构，默认优化应用程序。在团队成员对于Vue框架熟悉的基础上，可以更快上手NuxtJs。
+
+-  后端技术选型
+
+我们需要为 “运营” 同学提供一个 CMS 的平台来帮助它们进行配置。页面中所有的内容预期都是可配的，包括标签，文章，广告等，不能直接代码写死文案。配置需有 GUI 页面，符合非技术人员习惯。
+
+综上，本项目决定使用`Strapi`。`Strapi`是一款灵活的、开放源码的CMS，适合搭配`Nuxt3`搭建一般的内容展示网站。它能够提供对数据库的管理服务，并且它支持多种类型的数据库，并在此基础上封装，抹平了各种数据库在使用上的差异，方便非技术人员使用。使用`Strapi`，我们完全可以不用过多费心在后端接口开发上，只需注重数据库结构设计以及前端开发即可，并且运营人员可以很快的上手。
+
+### 3.2 架构设计
+
+#### 3.2.1 概要设计
+
+- 按层级
+
+![img](https://lqu7yom0qg.feishu.cn/space/api/box/stream/download/asynccode/?code=N2EyNzZiN2E2ZjAwNjIyZTZkMTI0N2VhNDM0M2JhODVfd2pYNmg2MEZHS2F2Z1hxN3dqSUh0MUtHeXVkSGpoVE9fVG9rZW46Ym94Y25BSk9ycWhBZkJaejN2bTdKQmw0cUxjXzE2NzcwMzA3ODM6MTY3NzAzNDM4M19WNA)
+
+- 按照系统模块和处理流程
+
+![img](https://lqu7yom0qg.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmQ2MjBkMTQzYjkwNTAwYjAxNzY0NDk0NmFhZjgyOGRfelNEUFk1Wkh5aW90M2JvUGJhT1hEYlFlMTBPSHhZUHhfVG9rZW46Ym94Y25oanpkaVM3ZnY3M2VjNFFqUEVzZmdkXzE2NzcwMzA3ODM6MTY3NzAzNDM4M19WNA)
+
+#### 3.2.2 详细设计
+
+- 开发约定
+  - CMS：内容管理系统。
+  - Strapi：一种灵活的、开放源码的CMS。
+  - 接口文档使用Showdoc书写
+  - 代码协作使用github
+- 功能实现
+  - 接口设计
+
+- [接口文档](https://www.showdoc.com.cn/2184396549651010/9799650440505280) （密码：200295）
+
+- - 系统间交互流程
+
+- ![img](https://lqu7yom0qg.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDFlOTg2MzZhMDRjZDU3NTA1MzM2OWQyMmI3NDYyYWNfT29XbUZDcjRYc3FmQm1rQ3FwZzZZSFUxVlA4ejNqaUVfVG9rZW46Ym94Y25jUWhCWHpFT2hrU3BFWEQ2RVBvQnplXzE2NzcwMzA3ODM6MTY3NzAzNDM4M19WNA)
+
+- - 存储设计
+
+-  存储结构（数据源）：SQLite
+
+- ![img](https://lqu7yom0qg.feishu.cn/space/api/box/stream/download/asynccode/?code=YTFiYWMxZjQ2OTAzYzEwZjc5YzJiZmJhMDEwZjFiNmZfM1hLd2pZdUlVQ1N6Ym9hMXJBWlZIN0JsUEdzaDFaTTlfVG9rZW46Ym94Y242Q2I5cWNYMkRVbTdvUGVDUjNEVXBkXzE2NzcwMzA3ODM6MTY3NzAzNDM4M19WNA)
+
+- ![img](https://lqu7yom0qg.feishu.cn/space/api/box/stream/download/asynccode/?code=MTIxNDBlMDg3Yzk0MmJiY2I3YjQzNDFmYmNhNjAzZjdfVVFWZTlnSENkUGtiT214WTlSbFZZNWFLSUthOVd2MHVfVG9rZW46Ym94Y25XcGRIdEU0clBpN1BxczE3WnM4dTVkXzE2NzcwMzA3ODM6MTY3NzAzNDM4M19WNA)
+
+- 可靠性设计
+  - 流量预估
+  -  假设：3~5年用户数达到1000万注册用户
+
+  -  每日UV（网站独立访客）：200万（二八原则）； 每日每天点击浏览：30次； PV（页面浏览量）：200万 * 30=6000万； 集中访问量：24小时 * 0.2=4.8小时，有6000万 * 0.8=4800万（二八原则，20%时间会有80%的访问量）； 每分并发量：4.8小时*60=288分钟，每分钟访问4800万/288≈16.7万； 每秒并发量：16.7万/60≈2780； 假设：高峰期为平常值的三倍，则每秒的并发数可以达到8340次。 1毫秒=1.3次访问；
+
+  - 容量预估
+  -  按一台web服务器（以tomcat服务器举例），支持每秒300个并发计算。平常大约需要10台服务器，高峰期需要30台服务器；系统CPU一般维持在70%左右的水平，高峰期达到90%的水平，是不浪费资源，并比较稳定的。内存，IO类似。
+
+  -  以上预估仅供参考，因为服务器配置，业务逻辑复杂度等都有影响。在此CPU，硬盘，网络等不再进行评估。
+
+### 3.3 项目代码介绍
+
+#### 3.3.1 CMS内容配置模块
+
+运营人员可通过CMS进行配置。包括导航栏、标签栏、文章信息、作者信息、作者榜、广告位等内容。
+
+（数据表[青训营前端结业项目答辩汇报文档](https://lqu7yom0qg.feishu.cn/docx/A3DZdNjaSoLDtwxOGYdca82tnkg#KyeWdkoIio6EY2xSEO0chrXHn3g) ）
+
+![img](https://lqu7yom0qg.feishu.cn/space/api/box/stream/download/asynccode/?code=OTc2ODNkNjFhZDkzMTk5MzI0YmZmMjdlMDczOWY4ODlfT2cyUnFxQ3pwNTV2ZHhBUndqb1FmWXM3OEdvOUNNaUlfVG9rZW46Ym94Y25kS0owNUFhTlVoUEZ4bmZ2Y3JKV2VoXzE2NzcwMzA3ODM6MTY3NzAzNDM4M19WNA)
+
+![img](https://lqu7yom0qg.feishu.cn/space/api/box/stream/download/asynccode/?code=NDBlNmM5MDg3ZDQxNzc2YjliYjUyNDc0MDk0MDAzMzBfcWNwSE5BdlVKNndaWmxhUFhka1pKVDVsb1A3UWRzY3lfVG9rZW46Ym94Y25SeWFuMEtDZEp4ellua0tjbWJGNFVoXzE2NzcwMzA3ODM6MTY3NzAzNDM4M19WNA)
+
+# 四、测试结果
+
+墨菲定理：凡事只要有可能出错，那就一定会出错。
+
+> 建议从功能测试和性能测试两部分分析，其中功能测试补充测试用例，性能测试补充性能分析报告、可优化点等内容。
+
+### 4.1功能测试
+
+### 4.2性能测试
+
+# 五、Demo 演示视频
+
+# 六、项目总结与反思
+
+温故而知新，可以为师矣。
+
+#### 6.1 目前仍存在的问题
+
+Strapi作为后台仍有些许局限性。当后期数据表过多，数据关系更加复杂时，Strapi便显得力不从心。
+
+#### 6.2 已识别出的优化项
+
+#### 6.3 架构演进的可能性
+
+本项目仅基于`Nuxt`使用了`SSR`方式渲染项目，虽然提高了访问速度与 SEO ，但由于项目体量小，许多问题仍未显现，仍存在优化的可能性。针对本项目，可以使用混合渲染的模式，需要首屏优化和SEO的页面采用SSR开发模式；基本内容不变的采用SSG开发模式；其他页面可以采用前后端分离的CSR开发模式，减轻服务器压力。
+
+除此之外，随着用户的增多，访问量将成指数增长，使用Severless云原生替代分布式计算服务器是更好的选择。
+
+#### 6.4 项目过程中的反思与总结
+
+# 七、其他补充资料
+
+（密码：200295）
+
+https://www.showdoc.com.cn/2184396549651010/9799650440505280
+
+https://www.nuxtjs.cn/
+
+https://getstrapi.cn/developer-docs/latest/getting-started/introduction.html
+
+https://strapi.io/
+
+https://blog.csdn.net/weixin_41519463/article/details/125396145
+
+[【前端】青训营大项目 - 基于 SSR 开发仿掘金站点](https://bytedance.feishu.cn/docx/SyuZdfdtNoX8wcxAzhfc1mkUnFg) 
+
+# 八、感谢
+
+一个不懂得感恩的民族，是没有希望的民族。
