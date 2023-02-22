@@ -1,79 +1,122 @@
 <template>
   <aside>
-      <ul>
-        <li class="asideLi aside-first">
+      <div v-for="item,index in this.asideInfo" :key="index">
+        <div class="asideLi aside-first">
           <div class="iconfont icon-shijian" id="good"></div>
           <div id="goto">去签到</div>
           <p>点亮你在社区的每一天</p>
-        </li>
-        <div class="asideLi-fixed asideLi">
-          <li class="asideLi imgBox">
-            <a>
-              <img src="image/kfzdh.webp" alt="">
-            </a>
-            <a class="imgBox-advertisement">广告</a>
-            <div class="iconfont icon-RectangleCopy imgBox-eliminate"></div>
-          </li>
-          <li class="asideLi imgBox">
-            <a>
-              <img src="image/ydtz.webp" alt="">
-            </a>
-            <a class="imgBox-advertisement">广告</a>
-            <div class="iconfont icon-RectangleCopy imgBox-eliminate"></div>
-          </li>
-          <li class="asideLi aside-fourth">
-            <img src="image/erweima.png" alt="">
-            <a id="first">下载稀土掘金APP</a>
-            <a id="second">一个帮助开发者成长的社区</a>
-          </li>
         </div>
-        <li class="asideLi aside-fifth">
-          <ul>
-            <li class="aside-fifth-li aside-fifth-firstLi">
-              <a class="iconfont icon-paihangbang"></a>
-              <a id="aside-fifth-author">作者榜</a>
-            </li>
-            <li class="aside-fifth-li aside-fifth-secondLi">
-              <ul>
+        <div class="asideLi-fixed asideLi">
+          <div class="asideLi imgBox">
+            <nuxt-link :to="{}">
+              <img :src=item.data alt="">
+            </nuxt-link>
+            <nuxt-link :to="{}" class="imgBox-advertisement">广告</nuxt-link>
+            <div class="iconfont icon-RectangleCopy imgBox-eliminate"></div>
+          </div>
+          <div class="asideLi imgBox">
+            <nuxt-link :to="{}">
+              <img src="image/ydtz.webp" alt="">
+            </nuxt-link>
+            <nuxt-link :to="{}" class="imgBox-advertisement">广告</nuxt-link>
+            <div class="iconfont icon-RectangleCopy imgBox-eliminate"></div>
+          </div>
+          <div class="asideLi aside-fourth">
+            <img src="image/erweima.png" alt="">
+            <nuxt-link :to="{}" id="first">下载稀土掘金APP</nuxt-link>
+            <nuxt-link :to="{}" id="second">一个帮助开发者成长的社区</nuxt-link>
+          </div>
+        </div>
+
+        <div class="asideLi aside-fifth">
+            <div class="aside-fifth-li aside-fifth-firstLi">
+              <nuxt-link :to="{}" class="iconfont icon-paihangbang"></nuxt-link>
+              <nuxt-link :to="{}" id="aside-fifth-author">作者榜</nuxt-link>
+            </div>
+            <div class="aside-fifth-li aside-fifth-secondLi">
+              <ul0>
                 <li>欧西里斯之天空龙</li>
                 <li>欧贝利斯克之巨神兵</li>
                 <li>拉之翼神龙</li>
-              </ul>
-            </li>
-            <li class="aside-fifth-li aside-fifth-thirdLi">
-              <a>完整榜单</a>
-              <a class="iconfont icon-arrow-right"></a>
-            </li>
-          </ul>
-        </li>
-        <li class="asideLi aside-sixth">
-          <ul>
-            <li>
-              <a>
-                <img src="image/manyouzhinan.png" alt="">
-                <a class="aside-sixth-smallA">稀土掘金漫游指南</a>
-              </a>
-            </li>
-            <li>
-              <a>
-                <img src="image/liulanqichajian.png" alt="">
-                <a class="aside-sixth-smallA">安装掘金浏览器插件</a>
-              </a>
-            </li>
-            <li>
-              <a>
-                <img src="image/fanyijihua.png" alt="">
-                <a class="aside-sixth-smallA">前往掘金翻译计划</a>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+              </ul0>
+            </div>
+            <div class="aside-fifth-li aside-fifth-thirdLi">
+              <nuxt-link :to="{}">完整榜单</nuxt-link>
+              <nuxt-link :to="{}" class="iconfont icon-arrow-right"></nuxt-link>
+            </div>
+        </div>
+      </div>
     </aside>
 </template>
 
 <script>
+import axios from 'axios'
+export default {
+  data(){
+    return{
+      asideInfo:{
+      },
+      offsetY:""
+    }
+  },
+  created(){
+    this.asyncData()
 
+  },
+  methods:{
+    // async...await
+    async asyncData(){
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+    const url ='http://localhost:1337/api/advertisements?populate=*'
+    try {
+      const that = this
+      const res = await axios.get(url)
+      that.asideInfo = res.data.data
+      console.log(res);
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  },
+  mounted(){
+      window.addEventListener("scroll", () => {
+        this.offsetY =
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        window.pageYOffset;
+        if (this.scrollY >= 500) {
+          console.log(this.scrollY)
+
+      }
+    })
+  },
+  // watch: {
+
+  //   offsetY(newValue, oldValue) {
+  //     // 等新值大于100的时候再做变化（优化一下）
+  //     //   if (newValue > 100) {
+  //     const main_header = document.querySelector('.main-header');
+  //     const view_nav  = document.querySelector('.view-nav ');
+  //     if (newValue >= 500) {
+  //       // if (newValue > oldValue) {
+  //       //   this.navShow = false;
+  //       //   console.log("向下滚动"); //显示
+  //       // } else {
+  //       //   this.navShow = true;
+  //       //   console.log("向上滚动"); //隐藏
+  //       // }
+  //       main_header.style.transform = 'translate3d(0,-100%,0)';
+  //       view_nav.style.transform = 'translate3d(0,-60px,0)';
+  //       // console.log('123')
+  //     }
+  //     else{
+  //       main_header.style.transform = 'none';
+  //       view_nav.style.transform = 'none';
+  //     }
+  //   }
+  // }
+}
 </script>
 
 <style scoped>
