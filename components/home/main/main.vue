@@ -1,73 +1,56 @@
-<template><!-- <main class="container main-container with-view-nav">
-    <div class="view timeline-index-view">
-      <div class="timeline-container">
-        <div class="timeline-content">
-          <div class="timeline-entry-list">
-            <div class="entry-list-container">
-              <div class="entry-list-wrap">
-                1
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-</main> -->
+<template>
   <main>
     <!-- 此盒子包含无限滚动列表和上方的导航栏（推荐|最新|热榜） -->
     <div class="main-box">
       <MainHeader />
       <!-- 无限滚动列表 -->
-      <ul class="main-ul">
-        <!-- 置顶的li -->
-        <li class="main-ul-li">
-          <ul class="main-ul-li-header">
-            <li class="userName">掘金酱</li>
-            <li class="releaseDate">29天前</li>
-          </ul>
-          <a>
-            <h3 class="title">8月更文活动倒计时！</h3>
-            <p class="article-first">
-              在这个热情的8月，「掘金·日新计划」再次起航，超多创作奖励等你来拿！
-            </p>
-            <div class="cover">
-              <img src="image/gwtz.webp" alt="">
-            </div>
-            <div></div>
-          </a>
-        </li>
-        <!-- 其他li -->
-        <!-- 定义模板 -->
-        <div class="templateBox">
-          <li class="main-ul-li">
-            <ul class="main-ul-li-header">
-              <li class="userName">{{ userName }}</li>
-              <li class="releaseDate">{{ releaseDate }}</li>
-              <li class="label">{{ label }}</li>
-            </ul>
-            <a>
-              <h3 class="title">{{ title }}</h3>
-              <p class="article">{{ article }}</p>
-              <div class="cover">
-                <img src="image/gwtz.webp" alt="">
+      <div class="entry-list-wrap">
+        <div class="entry-list list">
+          <li class="item">
+            <div class="entry">
+              <!-- 日期 -->
+              <div class="meta-container">
+                <a href="" class="user-message">ghw</a>
+                <div class="date">
+                  三天前
+                </div>
+                <div class="tag_list">
+                  <nuxt-link :to="{}" class="tag">1</nuxt-link>
+                </div>
               </div>
-            </a>
-            <ul class="main-ul-li-footer">
-              <li>
-                <div class="iconfont icon-browse"></div>&nbsp<a>1000</a>
-              </li>
-              <li>
-                <div class="iconfont icon-good"></div>&nbsp<a>100</a>
-              </li>
-              <li>
-                <div class="iconfont icon-comment"></div>&nbsp<a>10</a>
-              </li>
-            </ul>
-            <div class="iconfont icon-close main-ul-li-footer-close"></div>
+              <!-- 主体 -->
+              <div class="content-wrapper" style="border-bottom: 1px solid rgba(228, 230, 235, 0.5);">
+                <div class="content-main">
+                  <!-- 文字1 -->
+                  <div class="title-row">
+                    1
+                  </div>
+                  <!-- 文字2 -->
+                  <div class="abstract">
+                    <a href=""></a>
+                    <div></div>
+                  </div>
+                  <ul class="action-list jh-timeline-action-area">
+                    <li class="item view">
+                      <i></i>
+                      <span>1</span>
+                    </li>
+                    <li class="item like">
+                      <i></i>
+                      <span>1</span>
+                    </li>
+                    <li class="item comment">
+                      <i></i>
+                      <span>1</span>
+                    </li>
+                  </ul>
+                </div>
+                <img src="" alt="" class="lazy thumb">
+              </div>
+            </div>
           </li>
         </div>
-      </ul>
+      </div>
     </div>
     <Aside />
   </main>
@@ -77,213 +60,226 @@
 import MainHeader from './main-header';
 import Aside from './aside';
 export default {
-   components:{
-      MainHeader,
-      Aside
+  components: {
+    MainHeader,
+    Aside
   }
 }
 </script>
 
 <style scoped>
-/* .container {
-  position: relative;
-  margin: 0 auto;
+.entry-list {
   width: 100%;
-  max-width: 960px;
-  border: 1px solid;
-}
-
-.container .view.timeline-index-view {
-  margin-top: 93px;
-}
-
-.timeline-content {
+  background-color: #fff;
   position: relative;
-  margin-top: .33rem;
 }
 
-.timeline-entry-list {
-  margin-right: 21.667rem;
-  border-radius: 2px;
-  width: 700px;
-} */
-
-/* 页面主体内容区整体布局 */
-
-li{
-    list-style-type: none;
-}
-a{
-    text-decoration: none;
-    color: #696d70;
-}
-main{
-    width: 1000px;
-    height: 3000px;
-    margin: 120px auto;
-}
-.main-box{
-    float: left;
-    width: 740px;
+.item {
+  transition: all .3s ease-in;
 }
 
-.main-ul{
-    margin-top: 2px;
-    background-color: rgb(255,255,255);
+.entry {
+  cursor: pointer;
+  position: relative;
+  background: #fff;
+  padding: 12px 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-
-/* 置顶li样式 */
-.article-first {
-    display: block;
-    float: left;
-    width: 78%;
-    height: 50px;
-    margin-top: 10px;
-    border: 0px;
-    line-height: 25px;
-    font-size: 13px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.meta-container {
+  color: #86909c;
 }
 
-/* 模板样式 */
-.templateBox {
-    position: relative;
-    width: 100%;
-    height: 138px;
+.meta-container,
+.meta-row {
+  display: flex;
+  align-items: center;
 }
 
-.templateBox:hover {
-    background-color: rgb(249, 249, 249);
+.meta-container .user-message {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  max-width: 162px;
+  font-size: 13px;
+  line-height: 22px;
+  color: #4e5969;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
 }
 
-.main-ul-li {
-    width: 95%;
-    height: 138px;
-    margin: 0 18px;
-    border-bottom: 2px solid rgb(244, 245, 245);
-    cursor: pointer;
+.meta-container .date {
+  position: relative;
+  padding: 0 10px;
+  line-height: 22px;
+  font-size: 13px;
+  flex-shrink: 0;
 }
 
-.main-ul-li-header {
-    width: 100%;
-    height: 41px;
-    margin-left: -10px;
+.tag_list .tag,
+.tag_list {
+  display: flex;
+  align-items: center;
 }
 
-.main-ul-li-header li {
-    float: left;
-    padding: 0 10px;
-    margin: 12px 0;
-    font-size: 13px;
+.tag_list .tag {
+  position: relative;
+  flex-shrink: 0;
+  font-size: 13px;
+  line-height: 22px;
+  padding: 0 8px;
+  color: #86909c;
 }
 
-.main-ul-li-header li:nth-child(1):hover {
-    color: rgb(30, 143, 255);
+.content-wrapper {
+  display: flex;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e6eb;
+  margin-top: 10px;
+  width: 100%;
 }
 
-.main-ul-li-header li+li {
-    border-left: 2px solid rgb(231, 231, 231);
+.content-wrapper .content-main {
+  flex: 1 1 auto;
+}
+
+.title-row {
+  display: flex;
+  margin-bottom: 8px;
 }
 
 .title {
-    display: block;
-    float: left;
-    width: 78%;
-    font-size: 17px;
-    white-space: hidden;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1d2129;
+  width: 100%;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
-.article {
-    display: block;
-    float: left;
-    width: 78%;
-    height: 25px;
-    margin-top: 10px;
-    border: 0px;
-    line-height: 25px;
-    font-size: 13px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.abstract {
+  margin-bottom: 10px;
 }
 
-.cover img {
-    float: right;
-    height: 82px;
-    margin: -18px 0;
+.abstract a {
+  color: #86909c;
+  font-size: 13px;
+  line-height: 22px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
-.main-ul-li-footer {
-    float: left;
-    width: 78%;
-    height: 20px;
-    margin-left: -10px;
+.action-list>.item,
+.action-list {
+  display: flex;
+  align-items: center;
 }
 
-.main-ul-li-footer li {
-    float: left;
-    padding: 10px;
+ul {
+  padding: 0;
+  margin: 0;
 }
 
-.main-ul-li-footer li+li:hover {
-    color: rgb(30, 143, 255);
+.action-list>.item {
+  position: relative;
+  margin-right: 20px;
+  font-size: 13px;
+  line-height: 20px;
+  color: #4e5969;
+  flex-shrink: 0;
 }
 
-.main-ul-li-footer li .iconfont {
-    float: left;
-    margin-top: 3px;
-    font-size: 18px;
+.action-list>.item,
+.action-list {
+  display: flex;
+  align-items: center;
 }
 
-.main-ul-li-footer li a {
-    font-size: 13px;
+li {
+  list-style: none;
 }
 
-.main-ul-li-footer-close {
-    position: absolute;
-    top: 13px;
-    right: 16px;
-    color: #bababa;
+.action-list>.item.view i {
+  background-image: url(//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/view.1eda8fa.png);
 }
 
-.main-ul-li-footer-close:hover {
-    color: rgb(30, 143, 255);
-    font-weight: bold;
+.action-list>.item i {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-size: 100%;
 }
 
-/* 回到顶部按钮 */
-.toTop {
-    display: none;
-    position: fixed;
-    right: 20px;
-    bottom: 50px;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 0 20px 0 #cfd1d4;
-    font-size: 28px;
-    text-align: center;
-    line-height: 40px;
-    cursor: pointer;
+.action-list>.item span {
+  margin-left: 4px;
 }
 
-.toTopTips {
-    position: fixed;
-    display: none;
-    position: fixed;
-    right: 56px;
-    bottom: 87px;
-    width: 60px;
-    height: 20px;
-    border: 1px solid rgb(33, 32, 32);
-    color: rgb(33, 32, 32);
-    font-size: 12px;
-    text-align: center;
-    line-height: 20px;
+.action-list>.item {
+  position: relative;
+  margin-right: 20px;
+  font-size: 13px;
+  line-height: 20px;
+  color: #4e5969;
+  flex-shrink: 0;
 }
-</style>
+
+.action-list>.item,
+.action-list {
+  display: flex;
+  align-items: center;
+}
+
+.action-list>.item.like i {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJ9SURBVHgB7VZNbtNQEP7GP7AkN8DcoJyA5gRNTwCR2kqsUm9YEKEaoZRl0hUSBLWcAHOCpjdIT1AfIewgTjzM+AccxwHXLRYS/STnvbyxZ743b34e8L+DcEMMhu+fERk7DLTAuAwRjjz3eVD1+xsROD75eARmr7AczDlsVyVhoCbeDt85mXHmqLtkbst0Ko9jk31aVU9tAgvYW7FxYNJ3D85eufuTOZtKYiZu3X4z/LBdRU9tAia4E0+YL7I1z+3OmPEpkWOrip7aBED0RAcb7K8KeBb/alD+LQIa+TI48kxfuAfTVSlVMlybgAafpN1RYgujopwIOzpGEhuogGuloTc8bd2j5TmS8/VfHu7t5uUaeCaRygORPaqi00JFJAVn2UuNa667xXfEeJZ+rePR+Kool7gIQg67+RpBJTvo5QMoZHPXxFLW8Tld2lhoUqMOfg/JlKjdT2Pnpwf0bDlx3worG1EnPlENF0m5OayO5+7NyjRLHXgMfCsNQhumrBviRfRAhnqyu0KAYXmpcX/BfKKekL+dvBIheOUddkuNK7QO6A43ycXDvolYr5OtGTnlD3VU41rVZLdfccvIipMYDdYINAHZZJyicgR+4wQ0hbVH6Px7RBeNE9BM0lGbVxorTRNImhcxf8mvNxcDafOywBM0TUCqqEa/I09QbF6NECDQdjKuN6hGCJSlX2MENqXfGgFKS6hlmA9wi7hvLJ/qWEy/DL96AfMlEXWkU/mD0XiCkjud7kRk56iOltwRYz3ShM7KXlhpx4PheBR3qxzS6zbSi0YtyOZe9919D38ioNC2vIDl6NyQC2bWtzWVomvf93gWwg7KXH+HfwY/AGsn+Lf3Dim6AAAAAElFTkSuQmCC);
+}
+
+.action-list>.item.comment i {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAKRSURBVHgB7VZNbtpQEJ55BlR15RvUOUHTG5ATJD1BQ9NU6gq8JKiKoyrJ0u2qUmkFOUGaE5TegJwg7gnqLRh7MvMwwiDbYHCUDZ9kHph5M9+bN38AO+zwzEAoiEv3xz4v/KAFiK/0S6J/qPCBoui+Y38cFlC3HgHH7Zk1FTXZUIt/mivEPVY6GFFw4difPNiWwNW3X+dLhj1iA3JqProXq7EQ8TVoz4A1147OWfPkAjYhcO1+twirt7FSEexPiG4+26cDyMEXt1s3AI7Z+LsZ4TEFB1newBzjf2B6Gi8kaqwyvEpHFgmVtjmxcTgm401R44I2G0M2KjpEV5W9KbG0koC+8znrt47d8GFDCAk+gJCQwNyvwqS1LLNwBbHbHuQ7G99bJ4rXgY4LRPGqz4T2koda8EAERl2zIrory7hArlBnDmdSDSbHyf8WrwDVNHKV0YOyQdGNXhAPMwlgnHKjaHQPJUNBOEjamL9fhI7SMt0/Q3uu08wjoJGWLk+FZQKefLyEwIKSETcxwTCbANFfWQLAIygZCFifrjkEQq73WgixCaUziHWi+p1JIC65Hj/mpdt1oCQkq2u7+f4uk4BAGo8minguFQy2hFRXvlonqTuXgK5aRLqHc/m8vXK7LdgCE6hYskolTGtqqWnYsU+dmITJrnCvv/7sOXKSDVCBiScrJgeVBHInIokDuYqEsB5KQqgMl7uk1A4DwrpCkFLLExL0x1HAWfXCr2H4X2TOWh+wEAGB7pBQcRITzgwymvmxEilcVtp+cX1cfs20Drv2VKyDSVUPI4Ij3lRPEfFJclzXEvIQlXhioZ4QYaNjn/Q3IrAMiQmDA0wB+QGEflr/ENK6xXOXFS8QRQdFx/YdnhyP1D0hcwr1KvEAAAAASUVORK5CYII=);
+}
+
+.thumb {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 80px;
+  margin-left: 24px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.lazy {
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+img {
+  border-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #909090;
+}
+
+main {
+  width: 1000px;
+  height: 3000px;
+  margin: 120px auto;
+}
+
+.main-box {
+  float: left;
+  width: 740px;
+}</style>
