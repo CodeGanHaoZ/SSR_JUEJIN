@@ -1,4 +1,4 @@
-# A Demo for 《基于SSR开发仿掘金站点》
+# Team-G for 《基于SSR开发仿掘金站点》
 
 ## 项目启动
 
