@@ -34,8 +34,8 @@
       <div class="aside-fifth-li aside-fifth-firstLi user-block-header">
         <nuxt-link :to="{}" id="aside-fifth-author">🎖️作者榜</nuxt-link>
       </div>
-      <template v-for="item, index in this.authorInfo">
-        <div class="aside-fifth-li aside-fifth-secondLi">
+      <template v-for="item,index in this.authorInfo" >
+        <div class="aside-fifth-li aside-fifth-secondLi" :key="index">
           <div class="user-list">
             <div class="item">
               <nuxt-link :to="{}" id="aside-fifth-author" class="link">
