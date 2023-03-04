@@ -2,8 +2,8 @@
   <main>
     <div class="main-box container">
       <MainHeader />
-      <template v-for="item,index in this.mainInfo">
-        <div class="entry-list-wrap" :key="index">
+      <template >
+        <div class="entry-list-wrap" v-for="item,index in this.mainInfo" :key="index">
           <div class="entry-list list">
             <li class="item">
               <div class="entry">
