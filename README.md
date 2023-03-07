@@ -1,3 +1,15 @@
+# Team-G for 《基于SSR开发仿掘金站点》
+
+## 项目启动
+
+1. fork cms 数据层仓库`branch thy`参照对应 `readme` 启动
+2. nuxtjs-demo 启动
+
+```
+npm install
+npm run dev
+```
+
 # 📋前言
  <font color=#000> 这篇文章是关于在vscode终端中创建<font bgcolor=#fbd4d0 color=#be191c>**nuxtjs项目**</font>的一些步骤，同时还包括了使用<font bgcolor=#fbd4d0 color=#be191c>**Git、GitHub**</font>的一些操作，以此文章作为笔记，仅供参考。（前提：已经安装nodejs、git）
  
